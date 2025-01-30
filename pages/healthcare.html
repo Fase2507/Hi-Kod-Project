@@ -12,7 +12,7 @@
      <!-- Navbar (same as index.html) -->
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="../src/index.html">
+            <a class="navbar-brand" href="#">
                 <img src="../images/HI-Logo.png" alt="Logo" height="50">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" title="Toggle navigation">
@@ -21,24 +21,32 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../src/index.html">Home</a>
+                        <a class="nav-link active" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Rights</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Rights
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../pages/education.html">Education</a></li>
+                            <li><a class="dropdown-item" href="../pages/healthcare.html">Healthcare</a></li>
+                            <li><a class="dropdown-item" href="../pages/play.html">Play</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="../pages/gundem.html">Gündem</a>
                     </li>
-                    <li class="nav-item"></li>
+                    <li class="nav-item">
                         <a class="nav-link" href="../pages/stories.html">Stories</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
 
 
     <main class="container main-content" style="margin-top: 100px;">
