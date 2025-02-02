@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Right to Healthcare - Hi-kod Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        /* Hero Section */
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url("https://images.unsplash.com/photo-1535615615570-3b839f4359be");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Common Card Styles */
+        .card,
+        .stat-card,
+        .service-card,
+        .solution-card,
+        .success-story {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+            border: none;
+        }
+
+        .card:hover,
+        .stat-card:hover,
+        .service-card:hover,
+        .solution-card:hover,
+        .success-story:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Statistics Section */
+        .stat-card {
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+
+        .stat-card h3 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        /* Service Cards */
+        .service-card img,
+        .success-story img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .service-content,
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Vaccination Section */
+        .vaccination-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .vaccination img {
+            border-radius: 10px;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Common Text Styles */
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        /* List Styles */
+        .list-unstyled li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .bi-check-circle {
+            margin-right: 10px;
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            padding: 10px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 991px) {
+
+            .service-card,
+            .success-story {
+                margin-bottom: 20px;
+            }
+
+            .vaccination img {
+                height: 300px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .stat-card {
+                min-height: 180px;
+                padding: 20px 15px;
+            }
+
+            .stat-card h3 {
+                font-size: 2rem;
+            }
+
+            .service-card img,
+            .success-story img {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                height: 60vh;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .stat-card {
+                min-height: 160px;
+            }
+
+            .service-card img,
+            .success-story img {
+                height: 180px;
+            }
+        }
+
+        .bi {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            transition: transform 0.5s ease;
+
+        }
+
+        .bi-facebook:hover {
+            color: #0056b3;
+
+            transition: transform 0.5s ease;
+        }
+
+        .bi-twitter:hover {
+            color: #0056b3;
+
+            transition: transform 0.5s ease;
+        }
+
+        .bi-instagram:hover {
+            color: #be295b;
+        }
+
+        .bi-github:hover {
+
+            color: black;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../images/HI-Logo.png" alt="Logo" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                title="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#aboutus">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Rights
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item " href="../pages/education.html">Education</a></li>
+                            <li><a class="dropdown-item active" href="../pages/healthcare.html">Healthcare</a></li>
+                            <li><a class="dropdown-item " href="../pages/protection.html">Protection</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/gundem.html">Gündem</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../pages/stories.html">Stories</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4">Every Child Deserves Healthcare</h1>
+            <p class="lead">Millions of children worldwide lack access to basic healthcare services</p>
+        </div>
+    </header>
+
+    <!-- Importance of Healthcare Rights -->
+    <section class="healthcare-importance py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Why Children's Healthcare Rights Matter</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3>Early Development</h3>
+                            <p>Proper healthcare in early years is crucial for:</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle text-success"></i> Brain development</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Physical growth</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Immune system strength</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Long-term health</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3>Prevention Focus</h3>
+                            <p>Early healthcare intervention prevents:</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle text-success"></i> Chronic diseases</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Developmental delays</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Preventable disabilities</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Future health complications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h3>Quality of Life</h3>
+                            <p>Good healthcare ensures:</p>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle text-success"></i> Better education outcomes</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Improved social development</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Enhanced life opportunities</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Reduced family stress</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Vaccination Programs -->
+    <section class="vaccination py-5 ">
+        <div class="container">
+            <h2 class="text-center mb-4">Vaccination Programs</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <img src="https://images.unsplash.com/photo-1632833239869-a37e3a5806d2" class="img-fluid rounded"
+                        alt="Vaccination">
+                </div>
+                <div class="col-md-6">
+                    <div class="vaccination-info">
+                        <h3>Why Vaccinations Matter</h3>
+                        <p>Vaccines prevent an estimated 2-3 million deaths every year.</p>
+                        <ul class="list-group">
+                            <li class="list-group-item">Protection against deadly diseases</li>
+                            <li class="list-group-item">Community immunity</li>
+                            <li class="list-group-item">Cost-effective prevention</li>
+                            <li class="list-group-item">Global disease eradication</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nutrition and Growth -->
+    <section class="nutrition py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Nutrition and Growth</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061" class="card-img-top"
+                            alt="Healthy Food">
+                        <div class="card-body">
+                            <h3>Proper Nutrition</h3>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle text-success"></i> Balanced diet</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Essential nutrients</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Growth monitoring</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Dietary education</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1566004100631-35d015d6a491" class="card-img-top"
+                            alt="Growth Monitoring">
+                        <div class="card-body">
+                            <h3>Growth Monitoring</h3>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle text-success"></i> Regular check-ups</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Height and weight tracking</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Development milestones</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Early intervention</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca" class="card-img-top"
+                            alt="Support Programs">
+                        <div class="card-body">
+                            <h3>Support Programs</h3>
+                            <ul class="list-unstyled">
+                                <li><i class="bi bi-check-circle text-success"></i> Food assistance</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Nutrition education</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Community support</li>
+                                <li><i class="bi bi-check-circle text-success"></i> Family resources</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rights of Children with Disabilities -->
+    <section class="disabilities py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Rights of Children with Disabilities</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3" class="img-fluid"
+                            alt="Inclusive Healthcare">
+                        <div class="service-content p-3">
+                            <h3>Equal Access to Healthcare</h3>
+                            <ul>
+                                <li>Specialized medical care</li>
+                                <li>Rehabilitation services</li>
+                                <li>Assistive devices</li>
+                                <li>Inclusive healthcare facilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7" class="img-fluid"
+                            alt="Support Services">
+                        <div class="service-content p-3">
+                            <h3>Support Services</h3>
+                            <ul>
+                                <li>Early intervention programs</li>
+                                <li>Family support services</li>
+                                <li>Educational support</li>
+                                <li>Community integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Success Stories -->
+    <section class="success-stories py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Success Stories</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="success-story">
+                        <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf" alt="Success Story 1">
+                        <div class="p-3">
+                            <h3>Rural Healthcare Initiative</h3>
+                            <p>How mobile clinics transformed healthcare access in remote villages</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="success-story">
+                        <img src="https://images.unsplash.com/photo-1632833239869-a37e3a5806d2" alt="Success Story 2">
+                        <div class="p-3">
+                            <h3>Vaccination Campaign</h3>
+                            <p>Successful immunization program reaching millions of children</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="success-story">
+                        <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f" alt="Success Story 3">
+                        <div class="p-3">
+                            <h3>Community Health Workers</h3>
+                            <p>Local heroes making healthcare accessible to all</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Key Statistics -->
+    <section class="statistics py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Global Healthcare Statistics</h2>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="stat-card text-center">
+                        <h3>5.2M</h3>
+                        <p>Children under 5 die yearly from preventable causes</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card text-center">
+                        <h3>45%</h3>
+                        <p>Of child deaths are linked to malnutrition</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card text-center">
+                        <h3>20M</h3>
+                        <p>Children lack access to basic vaccines</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card text-center">
+                        <h3>400M</h3>
+                        <p>People lack access to basic healthcare</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="text-center mt-4">
+        <a href="../src/index.html" class="btn btn-primary">Back to Home</a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>About Us</h5>
+                    <p>Promoting and protecting children's healthcare rights worldwide.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Privacy Policy</a></li>
+                        <li><a href="#" class="text-light">Terms of Service</a></li>
+                        <li><a href="#" class="text-light">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; 2024 Children's Healthcare Rights. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
