@@ -1,0 +1,188 @@
+/* Carousel Styling */
+.carousel {
+  max-width: 1280px; /* Maksimum genişlik */
+  width: 100%; /* Genişlik %100 olacak */
+  height: auto; /* Yükseklik otomatik ayarlanacak */
+  margin: 0 auto; /* Slider'ı sayfada ortalar */
+  padding: 20px;
+  background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.carousel-inner {
+  height: 100%; /* Carousel içeriğinin yüksekliği slider'ın yüksekliği kadar olacak */
+}
+
+.carousel-item {
+  height: 100%; /* Her bir slaytın yüksekliği slider'ın yüksekliği kadar olacak */
+}
+
+
+.carousel img {
+  border-radius: 15px;
+  height: 100%; /* Resimlerin yüksekliği slider'ın yüksekliği kadar olacak */
+  width: 100%; /* Resimlerin genişliği slider'ın genişliği kadar olacak */
+  object-fit: cover; /* Resimler, belirlenen yüksekliğe ve genişliğe uyum sağlayacak şekilde ölçeklenir */
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 5%;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/* Blog Section Styling */
+.blog-content {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  max-width: 1280px; /* Maksimum genişlik */
+  width: 100%; /* Genişlik %100 olacak */
+  margin: 0 auto; /* Blog yazısı alanını sayfada ortalar */
+}
+
+.blog-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a2b49;
+  margin-bottom: 1.5rem;
+}
+
+.blog-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+/* Hero Section Styling */
+.hero-section {
+  padding: 120px 0 60px;
+  background-color: #f8f9fa;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #1a2b49;
+  margin-bottom: 1.5rem;
+}
+
+.hero-text {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Transition Section Styling */
+
+.transition-section {
+  padding: 10px 5%;
+  background: linear-gradient(to right, #ff9600, #ff7300);
+  text-align: center;
+  margin: 40px auto;
+  width: 80%;
+  max-width: 1280px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.transition-text {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: #fff;
+  font-weight: bold;
+}
+
+
+/* .transition-section {
+  padding: 20px 0;
+  background-color: #ff9600;
+  margin: 40px 0;
+} */
+
+.transition-content {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.transition-text {
+  font-size: 1.2rem;
+  color: #1a2b49;
+  font-weight: 600;
+}
+
+/* Responsive Tasarım İçin Media Query'ler */
+@media (max-width: 1300px) {
+  .carousel, .blog-content {
+    max-width: 90%; /* Daha küçük ekranlarda genişliği %90 yap */
+  }
+
+  .hero-title {
+    font-size: 2.5rem; /* Başlık boyutunu küçült */
+  }
+
+  .hero-text {
+    font-size: 1rem; /* Metin boyutunu küçült */
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel, .blog-content {
+    max-width: 95%; /* Mobil cihazlarda genişliği %95 yap */
+  }
+
+  .hero-title {
+    font-size: 2rem; /* Başlık boyutunu daha da küçült */
+  }
+
+  .hero-text {
+    font-size: 0.9rem; /* Metin boyutunu daha da küçült */
+  }
+
+  .blog-title {
+    font-size: 1.5rem; /* Blog başlık boyutunu küçült */
+  }
+
+  .blog-text {
+    font-size: 1rem; /* Blog metin boyutunu küçült */
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel, .blog-content {
+    max-width: 100%; /* Çok küçük ekranlarda genişliği %100 yap */
+    padding: 10px; /* Padding'i azalt */
+  }
+
+  .hero-title {
+    font-size: 1.8rem; /* Başlık boyutunu daha da küçült */
+  }
+
+  .hero-text {
+    font-size: 0.8rem; /* Metin boyutunu daha da küçült */
+  }
+
+  .blog-title {
+    font-size: 1.2rem; /* Blog başlık boyutunu daha da küçült */
+  }
+
+  .blog-text {
+    font-size: 0.9rem; /* Blog metin boyutunu daha da küçült */
+  }
+}
+
+.blog-content a {
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.blog-content a:hover {
+  color: #0056b3;
+}
