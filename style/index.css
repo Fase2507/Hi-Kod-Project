@@ -80,85 +80,92 @@ html, body {
 
 
 .carousel {
-    max-width: 750px;
+    max-width: 400px;
     justify-content: center;
     display: block;
-    padding: 10px 10px;
-    margin: auto auto;
+    padding: 3px;
+    margin: 15px auto;
     background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    width: 85%;
 }
 
 .single-card-container {
-    max-width: 100%;
+    max-width: 350px;
     margin: auto;
-    padding: 15px;
+    padding: 5px;
+    aspect-ratio: 1/1;
 }
 
 .carousel .card {
     transform: scale(1);
     transition: transform 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border: none;
-    border-radius: 15px;
+    border-radius: 8px;
     overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .carousel .card:hover {
-    transform: scale(1);
+    transform: scale(1.02);
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 .carousel .card-img-top {
-    height: 250px;
+    height: 85%;
     object-fit: cover;
+    width: 100%;
+    margin: 10px;
+    padding: 20pxx;
 }
 
 .carousel .card-body {
-    padding: 1.2rem;
+    padding: 0.6rem;
     background: white;
+    height: 25%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .carousel .card-title {
-    color: #1a2b49;
+    font-size: 0.95rem;
+    margin: 0 0 0.2rem 0;
     font-weight: 600;
-    margin-bottom: 1rem;
+    line-height: 1.2;
 }
 
 .carousel .card-text {
-    color: #180505;
-    line-height: 1.6;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .carousel-arrow {
-    width: 45px;
-    height: 45px;
+    width: 30px;
+    height: 30px;
     background-color: #007bff;
-    /* border-radius: 50%; */
-    display: block;
+    display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0,123,255,0.3);
-    transition: all 0.3s ease;
-}
-.carousel-arrow{
-    border-radius: 0%;
-    
-}
-.carousel-arrow i {
-     color: rgb(248, 248, 248);
-     font-size: 28px;
-
+    box-shadow: 0 2px 5px rgba(0,123,255,0.2);
 }
 
 .carousel-control-prev {
-    left: -20px;
+    left: -12px;
 }
 
 .carousel-control-next {
-    right: -20px;
+    right: -12px;
 }
 
 .carousel-control-prev:hover .carousel-arrow,
@@ -388,64 +395,53 @@ html, body {
 /* Add these responsive styles at the end of the file */
 @media screen and (max-width: 768px) {
     .carousel {
-        max-width: 95%;
-        padding: 5px;
+        max-width: 85%;
+        padding: 3px;
+        margin: 10px auto;
     }
 
     .single-card-container {
-        padding: 10px;
+        padding: 5px;
     }
 
     .carousel .card-img-top {
-        height: 200px;
+        height: 140px;
     }
 
     .carousel-arrow {
-        width: 35px;
-        height: 35px;
-    }
-
-    .carousel-arrow i {
-        font-size: 20px;
-    }
-
-    .carousel-control-prev {
-        left: -10px;
-    }
-
-    .carousel-control-next {
-        right: -10px;
+        width: 25px;
+        height: 25px;
     }
 }
 
 @media screen and (max-width: 576px) {
     .carousel {
-        max-width: 100%;
-        padding: 5px;
+        max-width: 90%;
+        margin: 8px auto;
     }
 
     .carousel .card-img-top {
-        height: 180px;
+        height: 130px;
     }
 
     .carousel .card-body {
-        padding: 0.8rem;
+        padding: 0.6rem;
     }
 
     .carousel .card-title {
-        font-size: 1.1rem;
-    }
-
-    .carousel .card-text {
         font-size: 0.9rem;
     }
 
+    .carousel .card-text {
+        font-size: 0.75rem;
+    }
+
     .carousel-arrow {
-        width: 30px;
-        height: 30px;
+        width: 22px;
+        height: 22px;
     }
 
     .carousel-arrow i {
-        font-size: 18px;
+        font-size: 14px;
     }
 }
