@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Children's Stories - Hi-kod Project</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../style/stories.css" />
+    <link rel="stylesheet" href="../style/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+      :root {
+        --primary-color: #ff6b6b;
+        --secondary-color: #4ecdc4;
+        --accent-color: #ffe66d;
+        --text-dark: #333;
+        --text-light: #666;
+        --white: #ffffff;
+        --transition: all 0.3s ease;
+        --shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        --border-radius: 15px;
+      }
+
+      /* Base Styles */
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f8f9fa;
+        color: var(--text-dark);
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      /* Hero Section */
+      .hero-section {
+        height: 80vh;
+        background: linear-gradient(
+            135deg,
+            rgba(78, 205, 196, 0.9),
+            rgba(255, 107, 107, 0.9)
+          ),
+          url("https://images.unsplash.com/photo-1542810634-71277d95dcbb")
+            center/cover;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+
+      /* Story Box */
+      .story-box {
+        background: linear-gradient(135deg, var(--white), #f8f9fa);
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        padding: 3rem !important;
+        margin: 3rem auto;
+        max-width: 1200px;
+        box-sizing: border-box;
+      }
+
+      /* Card Grid Layout */
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -1rem;
+        justify-content: center;
+      }
+
+      .col {
+        flex: 0 0 calc(33.333% - 2rem);
+        margin: 1rem;
+        max-width: calc(33.333% - 2rem);
+        box-sizing: border-box;
+      }
+
+      /* Card Styles */
+      .story-card {
+        background: var(--white);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        height: 100%;
+        transition: var(--transition);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+      }
+
+      .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+        transition: transform 0.3s ease;
+      }
+
+      .card-body {
+        padding: 1.5rem;
+        position: relative;
+        flex: 5;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .content-wrapper {
+        flex: 1;
+        margin-bottom: 3rem;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--text-dark);
+      }
+
+      .card-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--text-light);
+      }
+
+      /* Button Styles */
+      .button-wrapper {
+        position: center;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        right: 1.5rem;
+        border-radius: 20px;
+      }
+
+      .btn-primary {
+        background-color: #1a2b49 !important; /* Yeni renk */
+        color: white !important;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: var(--transition);
+        display: inline-block;
+        text-decoration: none;
+        width: 100%;
+      }
+
+      .btn-primary:hover {
+        background-color: #0d1a33 !important; /* Daha koyu ton */
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(26, 43, 73, 0.3); /* Yeni gölge rengi */
+      }
+      /* Category Badge */
+      .category-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--accent-color);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        z-index: 2;
+      }
+
+      /* Map Section Styles */
+      #map-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 60%; /* 16:9 aspect ratio */
+        margin: 2rem 0;
+      }
+      #world-map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #f8f9fa;
+        border-radius: 15px;
+        overflow: hidden;
+      }
+
+      .country {
+        fill: #dee2e6;
+        stroke: var(--white);
+        stroke-width: 0.3;
+        transition: fill 0.2s;
+        cursor: pointer;
+      }
+
+      .country:hover {
+        fill: #4dabf7;
+      }
+
+      /* Kart ve buton animasyonları */
+      .story-card {
+        transition: all 0.3s ease;
+      }
+
+      .hover-card {
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .highlight-card {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        z-index: 2;
+        position: relative;
+      }
+
+      .button-highlight {
+        animation: pulseButton 1.5s infinite;
+      }
+
+      @keyframes pulseButton {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+        }
+
+        70% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+        }
+
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+        }
+      }
+
+      /* Location Points */
+      .location-point {
+        fill: var(--primary-color);
+        stroke: var(--white);
+        stroke-width: 1;
+        transition: var(--transition);
+        r: 3;
+      }
+
+      .location-point:hover {
+        fill: #ff8787;
+        r: 7;
+        cursor: pointer;
+      }
+
+      /* Country Labels */
+      .country-label {
+        font-size: 12px;
+        font-weight: 500;
+        fill: var(--text-dark);
+        pointer-events: none;
+      }
+
+      /* Footer Styles */
+      .footer {
+        background: var(--text-dark);
+        color: var(--white);
+        padding: 3rem 0;
+        margin-top: 3rem;
+        width: 100%;
+      }
+
+      .social-links a {
+        color: var(--white);
+        margin-right: 1rem;
+        transition: var(--transition);
+      }
+
+      .social-links a:hover {
+        color: var(--primary-color);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 1200px) {
+        .col {
+          flex: 0 0 calc(50% - 2rem);
+          max-width: calc(50% - 2rem);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .col {
+          flex: 0 0 calc(100% - 2rem);
+          max-width: calc(100% - 2rem);
+        }
+
+        .story-box {
+          padding: 2rem !important;
+          margin: 2rem 1rem;
+        }
+
+        #map-container {
+          padding-bottom: 100%;
+        }
+
+        .country-label {
+          font-size: 10px;
+        }
+
+        .location-point {
+          r: 3;
+        }
+
+        .location-point:hover {
+          r: 5;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        #map-container {
+          padding-bottom: 40%;
+        }
+      }
+
+      .info-card {
+        position: absolute;
+        background: white;
+        padding: 15px;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        display: none;
+        max-width: 250px;
+        font-size: 14px;
+        line-height: 1.4;
+        border-radius: 8px;
+      }
+      .info-card a {
+        text-decoration: none;
+      }
+      .info-card h3 {
+        color: #1a2b49;
+      }
+      .info-card p {
+        color: black;
+      }
+      @media (max-width: 768px) {
+        .info-card {
+          max-width: 200px;
+          font-size: 12px;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="../src/index.html">
+          <img src="../images/HI-Logo.png" alt="Logo" height="50" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          title="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../src/index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Rights</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../pages/gundem.html">Gündem</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="stories.html">Stories</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-white">
+      <div class="container text-center position-relative z-index-1">
+        <h1 class="display-3 mb-4 fw-bold">
+          Children's Stories <span class="text-warning">That Changed</span> the
+          World
+        </h1>
+        <p class="lead fs-2 mb-0">
+          "Every child's story is a page full of hope for the future."
+        </p>
+      </div>
+    </section>
+    <!-- Story Box -->
+    <section class="story-box p-5 mb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="text-center mb-5">
+            <h2 class="display-5 mb-4">
+              Stories That <span class="text-warning">Inspire</span> the Future
+            </h2>
+            <div class="description-wrapper mb-4">
+              <p class="lead mb-3">
+                Extraordinary achievements that reveal the power and potential
+                of children's rights...
+              </p>
+              <p class="mb-4">
+                Come discover how children's potential is shaped and how they
+                transform societies with these stories. Because every success
+                starts with a child getting his/her rights.
+              </p>
+            </div>
+            <div class="badges-wrapper">
+              <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <span class="badge rounded-pill bg-primary px-4 py-2"
+                  >Education</span
+                >
+                <span class="badge rounded-pill bg-success px-4 py-2"
+                  >Health</span
+                >
+                <span class="badge rounded-pill bg-warning px-4 py-2"
+                  >Sport</span
+                >
+                <span class="badge rounded-pill bg-info px-4 py-2"
+                  >Technology</span
+                >
+                <span class="badge rounded-pill bg-secondary px-4 py-2"
+                  >Policy</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Story Cards -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+      <!-- Maya -->
+      <div class="col" data-country="Suriye1">
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Sport</span>
+          <img
+            src="resimler/azab.jpg"
+            class="card-img-top"
+            alt="Maya konuşma yaparken"
+          />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                The successful story of Syrian Azab
+              </h3>
+              <p class="card-text text-muted">
+                Growing up in Syria, Azab always dreamed of becoming a pediatrician. But when she was forced to flee, she was unsure if her dreams would ever come to fruition.
+In 2016, Azab was resettled to Germany, where she began training as a pharmaceutical technical assistant. She says that it was always important for her to help people. Now, thanks to a lot of hard work and dedication and after several internships in the field, Azab works in a pharmacy in the German city of Jena.
+She is considering going back to school to further her education and her career in medicine. For Azab, the possibilities are now endless.
+              </p>
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://www.unrefugees.org/news/syrian-refugees-find-success-after-twelve-years-of-conflict-see-them-then-and-now/"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Malala -->
+      <div class="col" data-country="pakistan">
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Education</span>
+          <img
+            src="resimler/Malala.jpg"
+            class="card-img-top"
+            alt="Malala konuşma yaparken"
+          />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                "I tell my story not because it is unique, but because it is the
+                story of many girls."
+              </h3>
+              <p class="card-text text-muted">
+                Malala Yousafzai is a Pakistani female education activist and
+                2014 Nobel Peace Prize winner. At the age of 17, he became the
+                youngest person to receive a Nobel Prize. In 2009, at the age of
+                11, she began writing a blog for the BBC Urdu service about her
+                school life and life under Taliban oppression.
+              </p>
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://malala.org/malalas-story"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Manal -->
+      <div class="col" >
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Education</span>
+          <img
+            src="resimler/manal.jpg"
+            class="card-img-top"
+            alt="Manal konuşma yaparken"
+          />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                A Success Story from Palestine to Turkey
+              </h3>
+              <p class="card-text text-muted">
+                Manal is just one of the beneficiaries of Mersin Community
+                Center, which is one of the 15 Community Centers that work to
+                ensure that local people and immigrant communities can live in
+                more peace, happiness and harmony.Malala Yousafzai is a
+                Pakistani female education activist and 2014 Nobel Peace Prize
+                winner. At the age of 17, he became the youngest person to
+                receive a Nobel Prize. In 2009, at the age of 11, she began
+                writing a blog for the BBC Urdu service about her school life
+                and life under Taliban oppression ame the youngest person to
+                receive a Nobel Prize. In 2009, at the age of 11, she began
+                writing a blog for the BBC Urdu service about her school life
+                and life under
+              </p>
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://toplummerkezi.kizilay.org.tr/haberler-etkinlikler/yararlanici-hikayeleri/filistinden-turkiyeye-bir-basari-oykusu"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+      <!-- Abdullah -->
+      <div class="col">
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Education</span>
+          <img
+            src="resimler/abdullah.jpg"
+            class="card-img-top"
+            alt="Abdullah"
+          />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                Sudanese Abdullah's success story that started in the refugee
+                camp
+              </h3>
+              <p class="card-text text-muted">
+                18-year-old Mahtum Abdullah graduated from the Turkish Maarif
+                Foundation (TMV) Niyala Boys' High School with a scholarship,
+                after completing his primary education with distinction. Abdullah stated that he came 4th in the high school entrance exam with 275 points out of 280 and said, "Even though my score was good, I was not very happy. I would have liked to be first as in the past, but thank God for that. Then UNICEF met with me because of my success. They chose me as a child and youth rights advocate." "We were organizing awareness programs for children and women about the importance of education and children's and women's rights with the institution." he said.
+              </p>
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://www.aa.com.tr/tr/dunya/sudanli-abdullahin-multeci-kampinda-baslayan-basari-hikayesi-turkiyenin-destegiyle-suruyor/2695611"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- bona -->
+      <div class="col">
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Sport</span>
+          <img
+            src="resimler/bona.jpg"
+            class="card-img-top"
+            alt="Abdullah"
+          />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                Nigerian 'Little Giant Man'
+              </h3>
+              <p class="card-text text-muted">
+                Adem Bona, born on March 28, 2003 in Lagos, Nigeria, is a Turkish professional basketball player of Nigerian origin. While playing in center positions, Bona was selected by the Philadelphia 76ers in the 2024 NBA Draft with the 41st pick in the second round. 
+                Bona, who grew up playing football, turned to basketball with the advantage of his height and joined Turkey at the age of 13 and started playing in the Istanbul Basket team.
+                In 2019, he was transferred to Pınar Karşıyaka and started his professional career here.
+             </p>
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://ilkerakgungor.medium.com/afrikada-doğdu-türkiyeli-oldu-nijeryalı-küçük-dev-adam-potaları-yıkıyor-cde9340c7932"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+
+
+      <!-- samia -->
+      <div class="col">
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Policy</span>
+          <img
+            src="resimler/samia.jpeg"
+            class="card-img-top"
+            alt="Samia"/>
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                Climbing to the top: Samia Suluhu Hassan.
+              </h3>
+              <p class="card-text text-muted">
+                Samia Suluhu Hassan is the first female President of Tanzania, born on the island of Zanzibar. Born in 1960, Hassan grew up in a family that lived on fishing and agriculture. He started his education in local schools and then continued his international education and received postgraduate studies in economics at the Universities of Manchester and New Hampshire.
+                Hassan began his career with the World Food Program and has held various public positions in Tanzania. He began to take part in the government of Tanzania in the early 2000s. Hassan, who was elected to the cabinet in his 40s, became a minister at the age of 45 and vice president at the age of 55. Following the death of Tanzanian President John Magufuli in 2021, he replaced him as President.
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://www.aa.com.tr/tr/dunya/sudanli-abdullahin-multeci-kampinda-baslayan-basari-hikayesi-turkiyenin-destegiyle-suruyor/2695611"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+    
+      
+      <!-- william -->
+      <div class="col">
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Technology</span>
+          <img src="resimler/william.jpg" class="card-img-top" alt="Yusra" />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                The boy who harnessed the wind: William Kamkwamb.
+              </h3>
+              <p class="card-text text-muted">
+                William Kamkwamba (born August 5, 1987) is a Malawian innovator, engineer, and author, best known for building a windmill to generate electricity for his village using scrap materials.
+                Born in a small village in Malawi.
+                Had to drop out of school in 2001 due to a famine that left his family unable to pay tuition fees.
+                Self-educated by reading books from a local library, particularly focusing on physics and engineering.
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://www.unrefugees.org/news/syrian-refugees-find-success-after-twelve-years-of-conflict-see-them-then-and-now/"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Amina -->
+      <div class="col" >
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Policy</span>
+          <img src="resimler/amina4.jpg" class="card-img-top" alt="Amina" />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                Success story of a Member of the Federal Parliament of Somalia
+              </h3>
+              <p class="card-text text-muted">
+                Abdi was born on October 21, 1981, in Hiran, Somalia, to a
+                family of the Hawiye dynasty. While studying in Mogadishu in
+                1992, she saw her family leave their home during the Somali
+                Civil War, and was raised by her uncle, who was a delegate to
+                the Somali Federal Parliament. Abdi was born on October 21, 1981, in Hiran, Somalia, as the daughter of a family belonging to the Hawiye dynasty. While he was studying in Mogadishu in 1992, he saw his family leave their home during the Somali Civil War, and then he settled in with his uncle, who was a delegate in the Somali Federal Parliament, and grew up there.
+              </p>
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://tr.wikipedia.org/wiki/Amina_Mohamed_Abdi"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- ece -->
+      <div class="col" >
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Education</span>
+          <img src="resimler/ece.jpg" class="card-img-top" alt="Amina" />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                Children's hopeful path: Ece Çiftçi
+              </h3>
+              <p class="card-text text-muted">
+                Social Entrepreneur Ece Çiftçi, born in Istanbul in 1993, completed her undergraduate education in a short time of 3 years. He formalized the social responsibility project he started during his high school years during his undergraduate education and founded the SosyalBen Association in 2013.
+In addition to his association activities, Çiftçi implemented the social initiatives SosyalBen Store, an economic enterprise, and SosyalBen Academy, which provides corporate and individual social responsibility project consultancy, and gathered all his social responsibility activities under the roof of SosyalBen Foundation in 2017. Farmer was invited to the BBVA Momentum training program by Garanti Bank in order to receive strategic investment support for his projects.
+              </p>
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://sosyalmentor.org/ece-ciftci/?utm_source=chatgpt.com"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+ 
+      <div class="col">
+        <article class="card story-card h-100 shadow-lg">
+          <span class="category-badge">Sport</span>
+          <img src="resimler/emrullah.jpg" class="card-img-top" alt="Buğra" />
+          <div class="card-body d-flex flex-column">
+            <div class="content-wrapper">
+              <h3 class="card-title h4 mb-3">
+                The successful story of the East Turkestan boxer
+              </h3>
+              <p class="card-text text-muted">
+                Emrullah Ahmet is a Uyghur Turkish freestyle boxing (MMA) athlete. He faced his Iranian opponent Mahyar Eshgi at the "Frightening Fight Night" event held in Manavgat district of Antalya on October 22, 2023 and won the fight. This success was welcomed with joy by the East Turkestan diaspora.
+                Emrullah Ahmet's performance in this competition is an example of the achievements of Uyghur Turks in the field of sports. 
+                5 Uyghur athletes participated in the competition, and each of them won the match, wore their national costumes in the rings, and waved the East Turkestan flag while knocking out their opponents.
+               </p>
+            </div>
+            <div class="button-wrapper mt-auto">
+              <a
+                href="https://turkistanpress.com/page/uygur-sporculardan-ustun-basari/6161?utm"
+                class="btn btn-primary w-100"
+                target="_blank"
+                >Read the story</a
+              >
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Map Section -->
+
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Geography of Stories</title>
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+      />
+      <script src="https://d3js.org/d3.v7.min.js"></script>
+    </head>
+
+    <section class="container py-5 map">
+      <h2 class="text-center mb-4 display-5">Geography of Stories</h2>
+      <div id="map-container">
+        <svg id="world-map"></svg>
+      </div>
+    </section>
+
+    <script>
+      let svg, projection, path;
+
+      function initMap() {
+        const container = d3.select("#world-map");
+        const width = container.node().getBoundingClientRect().width;
+        const height = container.node().getBoundingClientRect().height;
+
+        projection = d3
+          .geoMercator()
+          .scale(width / 8)
+          .translate([width / 2, height / 1.5]);
+        path = d3.geoPath().projection(projection);
+        svg = container.append("g");
+
+        d3.json(
+          "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"
+        ).then(function (data) {
+          svg
+            .selectAll("path")
+            .data(data.features)
+            .enter()
+            .append("path")
+            .attr("class", "country")
+            .attr("d", path)
+            .attr("data-name", (d) => d.properties.name.toLowerCase())
+            .on("click", handleCountryClick)
+            .on("mouseover", handleMouseOver)
+            .on("mouseout", handleMouseOut);
+
+          const locations = [
+            {
+              name: "Pakistan",
+              coords: [74.451559,32.7649],
+              info: "Education activist: Malala.",
+              link: "https://malala.org/malalas-story",
+            },
+            {
+              name: "Nigeria",
+              coords: [2.749063,7.870734],
+              info: "Nigerian 'Little Giant Man'.",
+              link: "https://ilkerakgungor.medium.com/afrikada-do%C4%9Fdu-t%C3%BCrkiyeli-oldu-nijeryal%C4%B1-k%C3%BC%C3%A7%C3%BCk-dev-adam-potalar%C4%B1-y%C4%B1k%C4%B1yor-cde9340c7932",
+            },
+
+            {
+              name: "Somalia",
+              coords: [48.93813,9.451749],
+              info: "Success story of a Member of the Federal Parliament of Somalia.",
+              link: "https://tr.wikipedia.org/wiki/Amina_Mohamed_Abdi",
+            },
+
+            {
+              name: "Turkey",
+              coords: [28.9784, 41.0082],
+              info: "The success story that ECE dreams of.",
+              link: "https://www.aa.com.tr/tr/insana-dair/hayalini-kurdugu-vakifla-cocuklar-icin-10-yildir-iyilik-yolunda-yuruyor/2868272?utm_source=chatgpt.com",
+            },
+          
+            {
+              name: "Palestine",
+              coords: [34.4585, 31.5016],
+              info: "A success story from Palestine to Turkey.",
+              link: "https://toplummerkezi.kizilay.org.tr/haberler-etkinlikler/yararlanici-hikayeleri/filistinden-turkiyeye-bir-basari-oykusu",
+            },
+            {
+              name: "Sudan",
+              coords: [32.67475,12.024832],
+              info: "Sudanese Abdullah's success story that started in the refugee camp.",
+              link: "https://www.aa.com.tr/tr/dunya/sudanli-abdullahin-multeci-kampinda-baslayan-basari-hikayesi-turkiyenin-destegiyle-suruyor/2695611",
+            },
+            {
+              name: "Syria",
+              coords: [38.9968, 34.8021],
+              info: "Ortadoğu'da bir ülke.",
+              link: "https://www.unrefugees.org/news/syrian-refugees-find-success-after-twelve-years-of-conflict-see-them-then-and-now/",
+            },
+            {
+              name: "Angola",
+              coords: [12.123581,-14.878316],
+              info: "Voices of Angola: From golf bag to Championship.",
+              link: "https://tr.euronews.com/2021/05/05/angola-n-n-sesleri-golf-cantas-tas-y-c-l-g-ndan-ulke-sampiyonluguna-giden-bir-basar-hikaye?utm_source=chatgpt.com",
+            },
+            {
+              name: "Malawi",
+              coords: [33.306422,-12.435778],
+              info: "The boy who harnessed the wind: William Kamkwamb.",
+              link: "https://eksiseyler.com/afrikadaki-koyune-yokluklar-icinde-hayat-veren-mucit-william-kamkwamba",
+            },
+            {
+              name: "Tanzania",
+              coords: [34.307291,-15.478641],
+              info: "Climbing to the top: Samia Suluhu Hassan.",
+              link: "https://live-worldbank-org.translate.goog/en/experts/s/samia-suluhu-hassan?_x_tr_sl=en&_x_tr_tl=tr&_x_tr_hl=tr&_x_tr_pto=tc",
+            },
+
+            {
+              name: "East Turkeastan",
+              coords: [73.822244,39.893973],
+              info: "M.E. Buğra: The independence story of East Turkestan.",
+              link: "https://www.usakolay.com/uygur-amerikan-dernegi-baskani-kuzzat-altay-kimdir-kuzzat-altay-nereli-ve-kac-yasinda#google_vignette",
+            },
+           
+          ];
+
+          svg
+            .selectAll("circle")
+            .data(locations)
+            .enter()
+            .append("circle")
+            .attr("class", "location-point")
+            .attr("cx", (d) => projection(d.coords)[0])
+            .attr("cy", (d) => projection(d.coords)[1])
+            .attr("r", 4)
+            .on("click", (event, d) => {
+              event.stopPropagation();
+              showInfoCard(event, d);
+            });
+        });
+
+        document.body.addEventListener("click", hideInfoCard);
+      }
+
+      function showInfoCard(event, d) {
+        let infoCard = document.getElementById("info-card");
+        if (!infoCard) {
+          infoCard = document.createElement("div");
+          infoCard.id = "info-card";
+          infoCard.className = "info-card";
+          document.body.appendChild(infoCard);
+        }
+
+        infoCard.innerHTML = `
+        <h3>${d.name}</h3>
+        <p>${d.info}</p>
+        <a href="${d.link}" target="_blank">Read the Story</a>
+      `;
+
+        infoCard.style.left = `${event.pageX + 10}px`;
+        infoCard.style.top = `${event.pageY - 30}px`;
+        infoCard.style.display = "block";
+      }
+
+      function hideInfoCard() {
+        const infoCard = document.getElementById("info-card");
+        if (infoCard) {
+          infoCard.style.display = "none";
+        }
+      }
+
+      function handleCountryClick(event, d) {
+        const countryId = d.properties.name.toLowerCase();
+        const relatedCard = document.querySelector(
+          `[data-country="${countryId}"]`
+        );
+        if (relatedCard) {
+          document
+            .querySelectorAll(".story-card")
+            .forEach((card) => card.classList.remove("highlight-card"));
+          relatedCard.classList.add("highlight-card");
+          relatedCard.scrollIntoView({ behavior: "smooth", block: "center" });
+          const button = relatedCard.querySelector(".btn-primary");
+          if (button) {
+            button.classList.add("button-highlight");
+            setTimeout(() => button.classList.remove("button-highlight"), 3000);
+          }
+        }
+      }
+
+      function handleMouseOver(event, d) {
+        d3.select(this).transition().duration(200).attr("fill", "#4dabf7");
+        let centroid = path.centroid(d);
+        svg
+          .append("text")
+          .attr("class", "country-label")
+          .attr("x", centroid[0])
+          .attr("y", centroid[1])
+          .text(d.properties.name);
+      }
+
+      function handleMouseOut(event, d) {
+        d3.select(this).transition().duration(200).attr("fill", "#dee2e6");
+        svg.select(".country-label").remove();
+      }
+
+      function resizeMap() {
+        const width = d3
+          .select("#world-map")
+          .node()
+          .getBoundingClientRect().width;
+        const height = d3
+          .select("#world-map")
+          .node()
+          .getBoundingClientRect().height;
+        projection.scale(width / 6).translate([width / 2, height / 1.5]);
+        svg.selectAll("path").attr("d", path);
+        svg
+          .selectAll("circle")
+          .attr("cx", (d) => projection(d.coords)[0])
+          .attr("cy", (d) => projection(d.coords)[1]);
+      }
+
+      initMap();
+      window.addEventListener("resize", resizeMap);
+
+      // Parallax Effect for Hero Section
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector(".hero-section");
+        hero.style.backgroundPositionY = scrolled * 0.5 + "px";
+      });
+
+      // Card Interaction
+      document.querySelectorAll(".story-card").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.querySelector(".card-img-top").style.transform = "scale(1.05)";
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.querySelector(".card-img-top").style.transform = "scale(1)";
+        });
+      });
+    </script>
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>About Us</h5>
+            <p>Promoting and protecting children's rights worldwide.</p>
+          </div>
+          <div class="col-md-4">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#" class="text-light">Privacy Policy</a></li>
+              <li><a href="#" class="text-light">Terms of Service</a></li>
+              <li><a href="#" class="text-light">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h5>Connect With Us</h5>
+            <div class="social-links">
+              <a href="#" class="text-light me-3"
+                ><i class="bi bi-facebook fs-3"></i
+              ></a>
+              <a href="#" class="text-light me-3"
+                ><i class="bi bi-twitter fs-3"></i
+              ></a>
+              <a href="#" class="text-light me-3"
+                ><i class="bi bi-instagram fs-3"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 text-center">
+            <p class="mb-2">
+              &copy; 2024 Children's Rights. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../script/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
