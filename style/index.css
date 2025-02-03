@@ -88,14 +88,13 @@ html, body {
     background: linear-gradient(145deg, #f8f9fa, #e9ecef);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    
+    width: 90%;
 }
 
 .single-card-container {
-    max-width: 500px;
-    max-height: 500px;
-    margin: auto auto;
-    padding: 30px;
+    max-width: 100%;
+    margin: auto;
+    padding: 15px;
 }
 
 .carousel .card {
@@ -384,4 +383,69 @@ html, body {
 .carousel {
     max-width: 80%;
     overflow: hidden;
+}
+
+/* Add these responsive styles at the end of the file */
+@media screen and (max-width: 768px) {
+    .carousel {
+        max-width: 95%;
+        padding: 5px;
+    }
+
+    .single-card-container {
+        padding: 10px;
+    }
+
+    .carousel .card-img-top {
+        height: 200px;
+    }
+
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+    }
+
+    .carousel-arrow i {
+        font-size: 20px;
+    }
+
+    .carousel-control-prev {
+        left: -10px;
+    }
+
+    .carousel-control-next {
+        right: -10px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .carousel {
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    .carousel .card-img-top {
+        height: 180px;
+    }
+
+    .carousel .card-body {
+        padding: 0.8rem;
+    }
+
+    .carousel .card-title {
+        font-size: 1.1rem;
+    }
+
+    .carousel .card-text {
+        font-size: 0.9rem;
+    }
+
+    .carousel-arrow {
+        width: 30px;
+        height: 30px;
+    }
+
+    .carousel-arrow i {
+        font-size: 18px;
+    }
 }
