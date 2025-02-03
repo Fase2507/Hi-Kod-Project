@@ -373,19 +373,24 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="../src/index.html">Home</a>
+              <a class="nav-link" href="../../src/index.html">Home</a>
+            </li>
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Rights
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="../eeducation.html">Education</a></li>
+                  <li><a class="dropdown-item" href="../hhealtcare.html">Healthcare</a></li>
+                  <li><a class="dropdown-item" href="../protection.html">Protection</a></li>
+              </ul>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../gundem.html">Journal</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Rights</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../pages/gundem.html">Gündem</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="stories.html">Stories</a>
+              <a class="nav-link active" href="#">Stories</a>
             </li>
           </ul>
         </div>
@@ -484,7 +489,8 @@ She is considering going back to school to further her education and her career 
       <div class="col" data-country="pakistan">
         <article class="card story-card h-100 shadow-lg">
           <span class="category-badge">Education</span>
-          <img
+          <img 
+            id="malala"
             src="resimler/Malala.jpg"
             class="card-img-top"
             alt="Malala konuşma yaparken"
@@ -560,6 +566,7 @@ She is considering going back to school to further her education and her career 
         <article class="card story-card h-100 shadow-lg">
           <span class="category-badge">Education</span>
           <img
+            id="abdul"
             src="resimler/abdullah.jpg"
             class="card-img-top"
             alt="Abdullah"
@@ -683,7 +690,7 @@ She is considering going back to school to further her education and her career 
       <div class="col" >
         <article class="card story-card h-100 shadow-lg">
           <span class="category-badge">Policy</span>
-          <img src="resimler/amina4.jpg" class="card-img-top" alt="Amina" />
+          <img id="amina" src="resimler/amina4.jpg" class="card-img-top" alt="Amina" />
           <div class="card-body d-flex flex-column">
             <div class="content-wrapper">
               <h3 class="card-title h4 mb-3">
@@ -713,7 +720,7 @@ She is considering going back to school to further her education and her career 
       <div class="col" >
         <article class="card story-card h-100 shadow-lg">
           <span class="category-badge">Education</span>
-          <img src="resimler/ece.jpg" class="card-img-top" alt="Amina" />
+          <img id="ece" src="resimler/ece.jpg" class="card-img-top" alt="Amina" />
           <div class="card-body d-flex flex-column">
             <div class="content-wrapper">
               <h3 class="card-title h4 mb-3">
@@ -739,7 +746,7 @@ In addition to his association activities, Çiftçi implemented the social initi
       <div class="col">
         <article class="card story-card h-100 shadow-lg">
           <span class="category-badge">Sport</span>
-          <img src="resimler/emrullah.jpg" class="card-img-top" alt="Buğra" />
+          <img id="uyghur" src="resimler/emrullah.jpg" class="card-img-top" alt="Buğra" />
           <div class="card-body d-flex flex-column">
             <div class="content-wrapper">
               <h3 class="card-title h4 mb-3">
@@ -1014,14 +1021,7 @@ In addition to his association activities, Çiftçi implemented the social initi
             <h5>About Us</h5>
             <p>Promoting and protecting children's rights worldwide.</p>
           </div>
-          <div class="col-md-4">
-            <h5>Quick Links</h5>
-            <ul class="list-unstyled">
-              <li><a href="#" class="text-light">Privacy Policy</a></li>
-              <li><a href="#" class="text-light">Terms of Service</a></li>
-              <li><a href="#" class="text-light">Contact Us</a></li>
-            </ul>
-          </div>
+          
           <div class="col-md-4">
             <h5>Connect With Us</h5>
             <div class="social-links">
