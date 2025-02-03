@@ -80,7 +80,7 @@ html, body {
 
 
 .carousel {
-    max-width: 400px;
+    max-width: 350px;
     justify-content: center;
     display: block;
     padding: 3px;
@@ -88,7 +88,7 @@ html, body {
     background: linear-gradient(145deg, #f8f9fa, #e9ecef);
     border-radius: 10px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    width: 85%;
+    width: 80%;
 }
 
 .single-card-container {
@@ -416,12 +416,12 @@ html, body {
 
 @media screen and (max-width: 576px) {
     .carousel {
-        max-width: 90%;
+        max-width: 100%;
         margin: 8px auto;
     }
 
     .carousel .card-img-top {
-        height: 130px;
+        height: 120px;
     }
 
     .carousel .card-body {
@@ -429,11 +429,11 @@ html, body {
     }
 
     .carousel .card-title {
-        font-size: 0.9rem;
+        font-size: 0.6rem;
     }
 
     .carousel .card-text {
-        font-size: 0.75rem;
+        font-size: 0.25rem;
     }
 
     .carousel-arrow {
