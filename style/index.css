@@ -1,8 +1,18 @@
+/* Add these rules to prevent horizontal scrolling */
+html, body {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .hvrCard {
     cursor: pointer;
     transition: transform 0.3s ease;
 }
 
+.row{
+    justify-content: center;
+}
 /* All cards scale down when any card is hovered */
 .row:hover>.hvrCard {
     transform: scale(0.7);
@@ -70,7 +80,7 @@
 
 
 .carousel {
-    max-width: 700px;
+    max-width: 750px;
     justify-content: center;
     display: block;
     padding: 10px 10px;
@@ -78,11 +88,12 @@
     background: linear-gradient(145deg, #f8f9fa, #e9ecef);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    
 }
 
 .single-card-container {
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 500px;
+    max-height: 500px;
     margin: auto auto;
     padding: 30px;
 }
@@ -366,4 +377,11 @@
 .featured-news .card-img-top {
     height: 300px;
     object-fit: cover;
+}
+
+
+/* If the carousel is causing overflow, add this */
+.carousel {
+    max-width: 80%;
+    overflow: hidden;
 }
