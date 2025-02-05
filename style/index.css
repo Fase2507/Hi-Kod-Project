@@ -80,26 +80,23 @@ html, body {
 
 
 .carousel {
-    max-width: 350px;
-    justify-content: center;
-    display: block;
-    padding: 3px;
-    margin: 15px auto;
-    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: transparent;
     border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    width: 80%;
+    width: 100%;
 }
 
 .single-card-container {
-    max-width: 350px;
+    max-width: 80%;
+    max-height: 80%;
     margin: auto;
-    padding: 5px;
-    aspect-ratio: 1/1;
+    padding: 15px;
 }
 
 .carousel .card {
-    transform: scale(1);
+    transform: none;
     transition: transform 0.3s ease;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border: none;
@@ -111,68 +108,64 @@ html, body {
 }
 
 .carousel .card:hover {
-    transform: scale(1.02);
+    transform: scale(1.05);
     box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
 .carousel .card-img-top {
-    height: 85%;
+    /* height: 300px; */
     object-fit: cover;
     width: 100%;
-    margin: 10px;
-    padding: 20pxx;
+    height: 25vw;
+    margin: 0;
+    padding: 0;
 }
 
 .carousel .card-body {
-    padding: 0.6rem;
+    padding: 1rem;
     background: white;
-    height: 25%;
-    margin: 0;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .carousel .card-title {
-    font-size: 0.95rem;
-    margin: 0 0 0.2rem 0;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
     font-weight: 600;
-    line-height: 1.2;
+    line-height: 1.3;
 }
 
 .carousel .card-text {
-    font-size: 0.8rem;
-    line-height: 1.2;
-    margin: 0;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #666;
 }
 
 .carousel-arrow {
-    width: 30px;
-    height: 30px;
-    background-color: #007bff;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 123, 255, 0.8);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 5px rgba(0,123,255,0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .carousel-control-prev {
-    left: -12px;
+    left: -20px;
 }
 
 .carousel-control-next {
-    right: -12px;
+    right: -20px;
 }
 
 .carousel-control-prev:hover .carousel-arrow,
 .carousel-control-next:hover .carousel-arrow {
-    background-color: #0056b3;
-    transform: scale(1.2);
-    
+    background-color: rgba(0, 86, 179, 0.9);
+    transform: scale(1.1);
 }
 
 
@@ -387,61 +380,120 @@ html, body {
 
 
 /* If the carousel is causing overflow, add this */
-.carousel {
-    max-width: 80%;
-    overflow: hidden;
-}
+
 
 /* Add these responsive styles at the end of the file */
 @media screen and (max-width: 768px) {
     .carousel {
-        max-width: 85%;
-        padding: 3px;
-        margin: 10px auto;
-    }
-
-    .single-card-container {
-        padding: 5px;
+        max-width: 100%;
+        padding: 10px;
     }
 
     .carousel .card-img-top {
-        height: 140px;
+        height: 250px;
     }
 
     .carousel-arrow {
-        width: 25px;
-        height: 25px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .carousel-control-prev {
+        left: -15px;
+    }
+
+    .carousel-control-next {
+        right: -15px;
     }
 }
 
 @media screen and (max-width: 576px) {
-    .carousel {
-        max-width: 100%;
-        margin: 8px auto;
-    }
-
     .carousel .card-img-top {
-        height: 120px;
-    }
-
-    .carousel .card-body {
-        padding: 0.6rem;
+        height: 200px;
     }
 
     .carousel .card-title {
-        font-size: 0.6rem;
+        font-size: 1rem;
     }
 
     .carousel .card-text {
-        font-size: 0.25rem;
+        font-size: 0.85rem;
     }
 
     .carousel-arrow {
-        width: 22px;
-        height: 22px;
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Mobile styles for 375px devices */
+@media screen and (max-width: 375px) {
+    .carousel {
+        max-width: 300px;
+        margin: 5px auto;
+        padding: 2px;
+    }
+
+    .single-card-container {
+        max-width: 280px;
+        padding: 10px;
+    }
+
+    .carousel .card-img-top {
+        height: 125px;
+        margin: 2px;
+        padding: 10px;
+    }
+
+    .carousel .card-body {
+        padding: 0.4rem;
+    }
+
+    .carousel .card-title {
+        font-size: 0.8rem;
+        margin-bottom: 0.1rem;
+    }
+
+    .carousel .card-text {
+        font-size: 0.7rem;
+        -webkit-line-clamp: 1;
+    }
+
+    .carousel-arrow {
+        width: 20px;
+        height: 20px;
     }
 
     .carousel-arrow i {
-        font-size: 14px;
+        font-size: 12px;
+    }
+
+    .carousel-control-prev {
+        left: -8px;
+    }
+
+    .carousel-control-next {
+        right: -8px;
+    }
+
+    /* Additional mobile adjustments */
+    .animated-text h1 {
+        font-size: 2rem;
+    }
+
+    .animated-text p {
+        font-size: 1rem;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-text {
+        font-size: 1rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
     }
 }
